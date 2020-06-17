@@ -9,6 +9,9 @@ const DropDown = ({ listData }) => {
       className="sm-2 mb-10"
       id="drdTransportMode"
     >
+      <option key="-1" value="-1">
+        Choose a Mode of Transport
+      </option>
       {listData.map((mode, id) => {
         return (
           <option key={id} value={id}>
