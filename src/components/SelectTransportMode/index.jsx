@@ -1,20 +1,23 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-const DropDown = ({ listData }) => {
-  console.log(listData);
+const SelectTransportMode = ({ listData, onChange }) => {
+  //console.log(listData);
   return (
     <Form.Control
       as="select"
       size="lg"
-      className="sm-2 mb-10"
+      className="xs-12 sm-12"
       id="drdTransportMode"
+      onChange={(e) => {
+        onChange(e.target.value);
+      }}
     >
-      <option key="-1" value="-1">
+      <option key="-1" value="">
         Choose a Mode of Transport
       </option>
       {listData.map((mode, id) => {
         return (
-          <option key={id} value={id}>
+          <option key={id} value={mode}>
             {mode}
           </option>
         );
@@ -23,4 +26,4 @@ const DropDown = ({ listData }) => {
   );
 };
 
-export default DropDown;
+export default SelectTransportMode;
