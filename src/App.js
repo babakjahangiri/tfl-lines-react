@@ -4,13 +4,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import {
   Header,
   SelectTransportMode,
-  SelectTransportVehicle,
+  SelectTransportLine,
+  LineMap,
 } from "./components";
 import "./App.css";
 
 function App() {
-  const [modes, setModes] = useState([]);
+  const [modes, setModes] = useState([]); //is the data that fill the first select box
   const [selectedMode, setSelectedMode] = useState("");
+  const [selectedLine, setSelectedLine] = useState("");
 
   const GetModesData = [];
   useEffect(() => {
@@ -28,11 +30,13 @@ function App() {
 
   function OnSelectTransportMode(mode) {
     setSelectedMode(mode);
+    setSelectedLine("");
   }
 
-  function OnSelectTransportVehicle() {}
+  function OnSelectTransportVehicle(LineNo) {
+    setSelectedLine(LineNo);
+  }
 
-  //console.log(modes);
   return (
     <div className="App">
       <Header></Header>
@@ -50,12 +54,25 @@ function App() {
 
           {selectedMode !== "" && (
             <Col lg="12">
-              <SelectTransportVehicle
+              <SelectTransportLine
                 mode={selectedMode}
                 onChange={OnSelectTransportVehicle}
-              ></SelectTransportVehicle>
+              ></SelectTransportLine>
             </Col>
           )}
+        </Row>
+        <Row>
+          <Col xs="12" lg="12">
+            <div className="mt-10 mb-10 font-bold">
+              {selectedMode !== "" && `${selectedMode}`}
+              {selectedLine !== "" && `: ${selectedLine}`}
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          {selectedMode !== "" && selectedLine !== "" ? (
+            <LineMap LineNo={selectedLine}></LineMap>
+          ) : null}
         </Row>
       </Container>
     </div>

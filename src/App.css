@@ -11,3 +11,20 @@
 .mb-10 {
   margin-bottom: 10px;
 }
+
+.padding-10 {
+  padding: 10px;
+}
+
+.line-card {
+  background-color: #1c3e95;
+  color: #ffffff;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.font-bold {
+  font-weight: bolder;
+}
