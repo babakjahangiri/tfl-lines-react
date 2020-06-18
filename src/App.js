@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
-import { Header, SelectTransportMode } from "./components";
+import {
+  Header,
+  SelectTransportMode,
+  SelectTransportVehicle,
+} from "./components";
 import "./App.css";
 
 function App() {
@@ -26,18 +30,7 @@ function App() {
     setSelectedMode(mode);
   }
 
-  const GetTransportData = [];
-  useEffect(() => {
-    fetch(`https://api.tfl.gov.uk/Line/Mode/${selectedMode}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedMode]);
+  function OnSelectTransportVehicle() {}
 
   //console.log(modes);
   return (
@@ -54,7 +47,15 @@ function App() {
               onChange={OnSelectTransportMode}
             ></SelectTransportMode>
           </Col>
-          <Col lg="12"></Col>
+
+          {selectedMode !== "" && (
+            <Col lg="12">
+              <SelectTransportVehicle
+                mode={selectedMode}
+                onChange={OnSelectTransportVehicle}
+              ></SelectTransportVehicle>
+            </Col>
+          )}
         </Row>
       </Container>
     </div>
